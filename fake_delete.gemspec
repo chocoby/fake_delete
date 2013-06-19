@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = FakeDelete::VERSION
   spec.authors       = ["chocoby"]
   spec.email         = ["chocoby@gmail.com"]
-  spec.description   = %q{Soft-delete" gem for Rails. It can enable the unique constraint by database.}
-  spec.summary       = %q{Soft-delete" gem for Rails. It can enable the unique constraint by database.}
+  spec.description   = %q{"Soft-delete" gem for Rails. It can enable the unique constraint by database.}
+  spec.summary       = %q{"Soft-delete" gem for Rails. It can enable the unique constraint by database.}
   spec.homepage      = "https://github.com/chocoby/fake_delete"
   spec.license       = "MIT"
 
