@@ -1,6 +1,8 @@
 # FakeDelete
 
-TODO: Write a gem description
+"Soft-delete" gem for Rails 3 (also Rails 4?). It can enable the unique constraint by database.
+
+**IMPORTANT**: EXPERIMENTAL VERSION!
 
 ## Installation
 
@@ -18,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+migration:
+
+    add_column :users, :deleted, :integer, null: false, default: 0
+    add_index :users, [:login_name, :deleted], unique: true
+
+model:
+
+    class User < ActiveRecord::Base
+      include FakeDelete
+      fake_delete
+    end
+
+delete:
+
+    user = User.find(1)
+    user.destroy
+
+recover:
+
+    user = User.with_deleted.find(1)
+    user.recover
 
 ## Contributing
 
