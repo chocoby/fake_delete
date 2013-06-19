@@ -1,5 +1,10 @@
 # FakeDelete
 
+[![Build Status](https://travis-ci.org/chocoby/fake_delete.png?branch=master)](https://travis-ci.org/chocoby/fake_delete)
+[![Dependency Status](https://gemnasium.com/chocoby/fake_delete.png)](https://gemnasium.com/chocoby/fake_delete)
+
+https://rubygems.org/gems/fake_delete
+
 "Soft-delete" gem for Rails 3 (also Rails 4?). It can enable the unique constraint by database.
 
 **IMPORTANT**: EXPERIMENTAL VERSION!
