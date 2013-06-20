@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-class User < ActiveRecord::Base
+class FakeModel < ActiveRecord::Base
   include FakeDelete
   fake_delete
 end
 
 describe FakeDelete do
   let(:record) do
-    User.create(name: "Fake")
+    FakeModel.create(title: "Fake City")
   end
 
   describe "#destroy" do
@@ -18,7 +18,7 @@ describe FakeDelete do
 
     it { expect(record).to be_deleted }
     it { expect(record.deleted).to be > 0 }
-    it { expect { User.find(record.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+    it { expect { FakeModel.find(record.id) }.to raise_error(ActiveRecord::RecordNotFound) }
   end
 
   describe "#recover" do
@@ -30,6 +30,6 @@ describe FakeDelete do
 
     it { expect(record).to_not be_deleted }
     it { expect(record.deleted).to be 0 }
-    it { expect(User.find(record.id)).to eq record }
+    it { expect(FakeModel.find(record.id)).to eq record }
   end
 end
