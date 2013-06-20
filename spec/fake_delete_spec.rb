@@ -18,7 +18,8 @@ describe FakeDelete do
 
     it { expect(record).to be_deleted }
     it { expect(record.deleted).to be > 0 }
-    it { expect { FakeModel.find(record.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+    it { expect(FakeModel.first).to be_nil }
+    it { expect(FakeModel.all).to be_empty }
   end
 
   describe "#recover" do
@@ -30,6 +31,7 @@ describe FakeDelete do
 
     it { expect(record).to_not be_deleted }
     it { expect(record.deleted).to be 0 }
-    it { expect(FakeModel.find(record.id)).to eq record }
+    it { expect(FakeModel.first).to eq record }
+    it { expect(FakeModel.all).to include record }
   end
 end
