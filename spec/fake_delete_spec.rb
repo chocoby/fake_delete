@@ -34,4 +34,15 @@ describe FakeDelete do
     it { expect(FakeModel.first).to eq record }
     it { expect(FakeModel.all).to include record }
   end
+
+  describe "#deleted?" do
+    context "not deleted" do
+      it { expect(record).to_not be_deleted }
+    end
+
+    context "deleted" do
+      before { record.destroy }
+      it { expect(record).to be_deleted }
+    end
+  end
 end
