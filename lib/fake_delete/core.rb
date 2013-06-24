@@ -23,9 +23,8 @@ module FakeDelete
     end
 
     def delete
-      if !deleted? && persisted?
-        update_column :deleted, Time.now.to_i
-      end
+      return if new_record? || destroyed?
+      update_column :deleted, Time.now.to_i
     end
 
     def recover
