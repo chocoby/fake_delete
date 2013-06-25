@@ -10,7 +10,7 @@ module FakeDelete
       end
 
       def only_deleted
-        scoped.tap { |x| x.default_scoped = false }.where("#{self.table_name}.deleted != 0")
+        scoped.tap { |x| x.default_scoped = false }.where("#{self.table_name}.deleted <> 0")
       end
 
       def with_deleted
