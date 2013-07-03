@@ -50,7 +50,7 @@ describe FakeDelete do
     it { expect(FakeModel.all).to include record }
   end
 
-  describe "#deleted?" do
+  describe "#destroyed?" do
     context "not deleted" do
       it { expect(record).to_not be_deleted }
     end
