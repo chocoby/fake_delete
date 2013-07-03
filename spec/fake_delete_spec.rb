@@ -10,6 +10,25 @@ describe FakeDelete do
     FakeModel.create!(title: "Fake City")
   end
 
+  describe ".only_deleted" do
+    let!(:record2) { FakeModel.create!(title: "Hey") }
+    let!(:records) { FakeModel.only_deleted }
+
+    before { record.destroy }
+
+    it { expect(records.count).to be 1 }
+    it { expect(records.first).to eq record }
+  end
+
+  describe ".with_deleted" do
+    let!(:record2) { FakeModel.create!(title: "Hey") }
+    let!(:records) { FakeModel.with_deleted }
+
+    it { expect(records.count).to be 2 }
+    it { expect(records.first).to eq record }
+    it { expect(records.second).to eq record2 }
+  end
+
   describe "#destroy" do
     before { record.destroy }
 
@@ -40,24 +59,5 @@ describe FakeDelete do
       before { record.destroy }
       it { expect(record).to be_deleted }
     end
-  end
-
-  describe ".only_deleted" do
-    let!(:record2) { FakeModel.create!(title: "Hey") }
-    let!(:records) { FakeModel.only_deleted }
-
-    before { record.destroy }
-
-    it { expect(records.count).to be 1 }
-    it { expect(records.first).to eq record }
-  end
-
-  describe ".with_deleted" do
-    let!(:record2) { FakeModel.create!(title: "Hey") }
-    let!(:records) { FakeModel.with_deleted }
-
-    it { expect(records.count).to be 2 }
-    it { expect(records.first).to eq record }
-    it { expect(records.second).to eq record2 }
   end
 end
